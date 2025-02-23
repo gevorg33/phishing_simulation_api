@@ -6,7 +6,7 @@ import { Attempt, AttemptDocument } from './schemas/attempt.schema';
 import { CreateAttemptDto } from './dto/attemts.dto'
 import { firstValueFrom } from 'rxjs';
 import { StatusEnum } from '../common/enums';
-import { API_URL } from '../config';
+import { HOST, PORT } from '../config';
 
 @Injectable()
 export class AttemptsService {
@@ -37,7 +37,7 @@ export class AttemptsService {
     };
 
     // Call the Simulation server endpoint
-    const simulationUrl = `${API_URL}/phishing/send`;
+    const simulationUrl = `${HOST}${PORT}/phishing/send`;
     try {
       const response = await firstValueFrom(
         this.httpService.post(simulationUrl, simulationPayload), // "publish" event

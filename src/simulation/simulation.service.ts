@@ -5,7 +5,7 @@ import { SendPhishingDto } from './dto/simulation.dto';
 import * as nodemailer from 'nodemailer';
 import { StatusEnum } from '../common/enums';
 import { Attempt, AttemptDocument } from '../attempts/schemas/attempt.schema';
-import { API_URL } from '../config';
+import { HOST, PORT } from '../config';
 
 @Injectable()
 export class SimulationService {
@@ -23,7 +23,7 @@ export class SimulationService {
     )
 
     // Construct the phishing link using the record's unique ID
-    const phishingLink = `${API_URL}/phishing/click?id=${sendPhishingDto.id}`;
+    const phishingLink = `${HOST}${PORT}/phishing/click?id=${sendPhishingDto.id}`;
 
     const transporter = nodemailer.createTransport({
       host: 'smtp.ethereal.email', // e.g., smtp.gmail.com

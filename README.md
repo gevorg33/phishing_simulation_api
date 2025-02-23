@@ -41,22 +41,16 @@ docker build -t nestjs-app .
 docker run -p 3000:3000 nestjs-app
 ```
 
-Open your browser or an API client (like Postman) and go to http://localhost:3000.
-
-Environment Variables (Optional)
+Open your browser or an API client (like Postman) and go to http://localhost:3000 if running locally.
 
 If you have environment variables (e.g., MONGODB_URI, JWT_SECRET), you can pass them at runtime:
 
 ```
-docker run -p 3000:3000 \
--e MONGODB_URI="your_mongodb_connection_string" \
--e JWT_SECRET="your_secret_key" \
-nestjs-app
+docker run --name nestjs-app \
+  --env-file .env \
+  -p 3000:3000 \
+  nestjs-app
 ```
-
-Alternatively, you can bake them into the image by copying a .env file, but this is generally not recommended for sensitive data.
-Stopping the Container
-
 
 Purging all Images, Containers, Volumes, and Networks
 

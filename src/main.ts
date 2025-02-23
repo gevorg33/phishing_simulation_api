@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import rateLimit from 'express-rate-limit';
+import { PORT } from './config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,8 +15,8 @@ async function bootstrap() {
       message: 'Too many requests from this IP, please try again later.',
     }),
   );
-  await app.listen(3000, (): void => {
-    console.log('Server has been run on port 3000');
+  await app.listen(PORT, (): void => {
+    console.log(`Server has been run on port ${PORT}`);
   });
 }
 void bootstrap();
