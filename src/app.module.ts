@@ -8,6 +8,7 @@ import { AppController } from './app.controller';
 import { AuthMiddleware } from './user/middlewares/auth.middleware';
 import { ConfigModule } from '@nestjs/config';
 import databaseConfig from './common/database.config';
+import { DB_URI } from './config';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import databaseConfig from './common/database.config';
       isGlobal: true,
       load: [databaseConfig],
     }),
-    MongooseModule.forRoot('mongodb+srv://gevorggasparyan33:amASh4ab9oSliIpW@cluster0.gqfsk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
+    MongooseModule.forRoot(DB_URI),
     UserModule,
     AttemptsModule,
     SimulationModule
